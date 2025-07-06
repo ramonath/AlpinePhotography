@@ -14,27 +14,37 @@ export class CartViewComponent implements OnInit{
 
   constructor(private cartService: CartService){}
 
-  ngOnInit(): void {
-    this.cartService.getCartItems().subscribe(data => {
-      this.cartItems = data;
+  async ngOnInit(): Promise<void> {
+    try {
+      this.cartItems = await this.cartService.getCartItems();
       this.totalPrice = this.getTotalPrice();
-    })
+    } catch (error) {
+      console.error('Fehler beim Laden des Warenkorbs:', error);
+    }
   }
 
   getTotalPrice(): number {
-    let total = 0;
-    for(let item of this.cartItems){
-      total += item.price;
-    }
-    return total;
-    }
+    return this.cartItems.reduce((total, item) => total + item.price, 0);
+  }
 
-    clearCart(): void {
-      this.cartService.clearCart().subscribe();
+  async clearCart(): Promise<void> {
+    try {
+      await this.cartService.clearCart();
+      this.cartItems = [];
+      this.totalPrice = 0;
+    } catch (error) {
+      console.error('Fehler beim Leeren des Warenkorbs:', error);
     }
+  }
 
-    checkout(): void{
-      this.cartService.checkout(this.cartItems).subscribe();
+  async checkout(): Promise<void> {
+    try {
+      await this.cartService.checkout(this.cartItems);
+      this.cartItems = [];
+      this.totalPrice = 0;
+    } catch (error) {
+      console.error('Fehler beim Checkout:', error);
     }
+  }
   }
 

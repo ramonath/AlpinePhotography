@@ -15,4 +15,38 @@ export class SupabaseService {
    getSupabaseClient(): SupabaseClient {
     return this.supabase;
   }
+
+  async addToCart(userId: string, productId: number, quantity: number = 1) {
+    const { data, error } = await this.supabase
+      .from('cart_items')
+      .insert([{ user_id: userId, product_id: productId, quantity }]);
+    if (error) throw error;
+    return data;
+  }
+
+  async getCartItems(userId: string) {
+    const { data, error } = await this.supabase
+      .from('cart_items')
+      .select('*')
+      .eq('user_id', userId);
+    if (error) throw error;
+    return data;
+  }
+
+  async clearCart(userId: string) {
+    const { data, error } = await this.supabase
+      .from('cart_items')
+      .delete()
+      .eq('user_id', userId);
+    if (error) throw error;
+    return data;
+  }
+
+  async checkout(userId: string) {
+    // Beispiel: nur löschen. Du könntest hier auch eine "orders" Tabelle anlegen.
+    const cartItems = await this.getCartItems(userId);
+    await this.clearCart(userId);
+    return cartItems;
+  }
 }
+

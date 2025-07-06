@@ -29,20 +29,25 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  addToCart(product: Product): void {
-    this.cartService.addToCart(product).subscribe({
-      next: () => {
-        this.snackbar.open("Product added to cart", "", {
-          duration: 2000,
-          horizontalPosition: 'right',
-          verticalPosition: 'top'
-        }
-
-        )
-      }
-    });
+  async addToCart(product: Product): Promise<void> {
+    try {
+      await this.cartService.addToCart(product);
+  
+      this.snackbar.open("Product added to cart", "", {
+        // duration: 2000,
+        // horizontalPosition: 'right',
+        // verticalPosition: 'top'
+      });
+    } catch (error) {
+      console.error("Fehler beim Hinzufügen zum Warenkorb:", error);
+      this.snackbar.open("Fehler beim Hinzufügen", "", {
+        // duration: 2000,
+        // horizontalPosition: 'right',
+        // verticalPosition: 'top'
+      });
+    }
   }
-
+  
   applyFilter(event: Event): void{
     let searchTerm = (event.target as HTMLInputElement).value;
     searchTerm = searchTerm.toLowerCase();
