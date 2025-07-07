@@ -15,4 +15,10 @@ mat-card {
     margin-left: 20px
 }
     
-    
+.custom-title {
+    font-size: 16px;
+  }
+  
+.custom-subtitle {
+    font-size: 14px;
+  }

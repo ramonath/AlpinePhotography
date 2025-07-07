@@ -1,6 +1,6 @@
 <div class="container">
   
-  <h2>Our latest collection</h2>
+  <h2>My latest photography</h2>
 
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event)" placeholder="Search" >
@@ -18,8 +18,8 @@
         <mat-card class="product-card" (click)="addToCart(product)">
             <img mat-card-image src="assets/images/{{product.image_url}}">
             <mat-card-content>
-              <mat-card-title>{{product.name}}</mat-card-title>
-              <mat-card-subtitle>{{product.price | currency:'EUR'}}</mat-card-subtitle>
+              <mat-card-title class="custom-title">{{product.name}}</mat-card-title>
+              <mat-card-subtitle class="custom-subtitle">{{product.price | currency:'EUR'}}</mat-card-subtitle>
             </mat-card-content>
           </mat-card>
           
