@@ -4,8 +4,8 @@
     <mat-card>
         <mat-list>
             <mat-list-item *ngFor="let item of cartItems">
-                <span class="price"  matListItemTitle>{{item.name}}</span>
-                <span class="price"  matListItemLine>{{item.price | currency:'EUR'}}</span>
+                <span class="price" matListItemTitle>{{item.products.name}}</span>
+                <span class="price" matListItemLine>{{item.products.price | currency:'EUR'}}</span>
             </mat-list-item>           
 
             <mat-list-item>

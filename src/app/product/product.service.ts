@@ -13,7 +13,7 @@ export class ProductService {
   constructor(private supabaseService: SupabaseService) {}
 
   getProducts(): Observable<Product[]> {
-    const supabase = this.supabaseService.getSupabaseClient();
+    const supabase = this.supabaseService.getClient();
   
     return from(
       supabase.from('products').select('*')
