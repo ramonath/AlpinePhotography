@@ -17,8 +17,20 @@ mat-card {
     
 .custom-title {
     font-size: 16px;
-  }
+}
   
 .custom-subtitle {
     font-size: 14px;
-  }
+}
+
+.product-card {
+    width: 300px; /* oder 100% für responsive Layout */
+ }
+  
+.product-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px; /* optional */
+}
