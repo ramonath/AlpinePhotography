@@ -34,16 +34,10 @@ export class ProductListComponent implements OnInit {
       await this.cartService.addToCart(product);
   
       this.snackbar.open("Product added to cart", "", {
-        // duration: 2000,
-        // horizontalPosition: 'right',
-        // verticalPosition: 'top'
       });
     } catch (error) {
       console.error("Fehler beim Hinzufügen zum Warenkorb:", error);
       this.snackbar.open("Fehler beim Hinzufügen", "", {
-        // duration: 2000,
-        // horizontalPosition: 'right',
-        // verticalPosition: 'top'
       });
     }
   }

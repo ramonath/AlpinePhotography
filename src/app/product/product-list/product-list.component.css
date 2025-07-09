@@ -1,6 +1,4 @@
-.product-card {
-    max-width: 150px;
-}
+
 
 mat-card:hover {
     transform: scale(1.05);
@@ -24,7 +22,8 @@ mat-card {
 }
 
 .product-card {
-    width: 300px; /* oder 100% für responsive Layout */
+    width: 200px; /* oder 100% für responsive Layout */
+    overflow: hidden;
  }
   
 .product-card img {
@@ -33,4 +32,6 @@ mat-card {
     object-fit: cover;
     display: block;
     border-radius: 4px; /* optional */
+    transition: transform 0.3s ease;
 }
+
